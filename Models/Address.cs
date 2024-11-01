@@ -8,14 +8,14 @@
     }
     public class Address
     {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string street { get; set; }
-        public string houseNumber { get; set; }
-        public string zip { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string country { get; set; }
-        public Addresstype addresstype { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Street { get; set; }
+        public string HouseNumber { get; set; }
+        public string Zip { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public Addresstype AddressType { get; set; }
     }
 }

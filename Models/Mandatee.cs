@@ -2,15 +2,15 @@
 {
     public class Mandatee
     {
-        public string id { get; set; }
-        public string companyName { get; set; }
-        public string name { get; set; }
-        public string taxId { get; set; }
-        public string taxAuthority { get; set; }
-        public List<BankAccount> bankAccounts { get; set; }
-        public List<Address> addresses { get; set; }
-        public string phone { get; set; }
-        public string mobile { get; set; }
-        public string email { get; set; }
+        public string Id { get; set; }
+        public string CompanyName { get; set; }
+        public string Name { get; set; }
+        public string TaxId { get; set; }
+        public string TaxAuthority { get; set; }
+        public List<BankAccount> BankAccounts { get; set; }
+        public List<Address> Addresses { get; set; }
+        public string Phone { get; set; }
+        public string Mobile { get; set; }
+        public string Email { get; set; }
     }
 }
