@@ -5,5 +5,6 @@
         public string Id { get; set; }
         public Client Client { get; set; }
         public List<OrderItem> Bom { get; set; }
+        public DateTime Date { get; set; }
     }
 }
