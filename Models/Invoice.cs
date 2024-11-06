@@ -2,7 +2,7 @@
 {
     public class Invoice
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public DateOnly Date { get; set; }
         public DateOnly DeliveryDate { get; set; }
         public DateOnly payDate { get; set; }
@@ -11,6 +11,6 @@
         public int Tax { get; set; }
         public string Email { get; set; }
         public float Total { get; set; }
-        public List<Order> Orders { get; set; }
+        public List<Order> Order { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 {
     public class Order
     {
-        public string Id { get; set; }
-        public Client Client { get; set; }
+        public Guid Id { get; set; }
+        public Customer Customer { get; set; }
         public List<OrderItem> Bom { get; set; }
         public DateTime Date { get; set; }
     }
