@@ -2,7 +2,8 @@
 {
     public class BankAccount
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+        public string AccountHolder { get; set; }
         public string InstitutionName { get; set; }
         public string Iban { get; set; }
         public string Bic { get; set; }
