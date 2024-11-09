@@ -3,6 +3,7 @@
     public class BankAccount
     {
         public Guid Id { get; set; }
+        public Client Client { get; set; }
         public string AccountHolder { get; set; }
         public string InstitutionName { get; set; }
         public string Iban { get; set; }
