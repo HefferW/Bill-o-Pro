@@ -3,6 +3,8 @@
     public class Invoice
     {
         public Guid Id { get; set; }
+        public Client Client { get; set; }
+        public User User { get; set; }
         public DateOnly Date { get; set; }
         public DateOnly DeliveryDate { get; set; }
         public DateOnly payDate { get; set; }
