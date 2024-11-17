@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Bill_o_Pro.Data.Migrations
+namespace Bill_o_Pro.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -24,8 +24,9 @@ namespace Bill_o_Pro.Data.Migrations
 
             modelBuilder.Entity("Bill_o_Pro.Models.Address", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AddressType")
                         .HasColumnType("int");
@@ -34,16 +35,19 @@ namespace Bill_o_Pro.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("HouseNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MandateeId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -63,19 +67,32 @@ namespace Bill_o_Pro.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MandateeId");
+                    b.HasIndex("ClientId");
 
-                    b.ToTable("Addresses");
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.BankAccount", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AccountHolder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Bic")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Iban")
                         .IsRequired()
@@ -85,38 +102,118 @@ namespace Bill_o_Pro.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MandateeId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Unit")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MandateeId");
+                    b.HasIndex("ClientId");
 
-                    b.ToTable("BankAccounts");
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("BankAccount");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.Client", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxAuthority")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Client");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxAuthority")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.Invoice", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
@@ -138,41 +235,58 @@ namespace Bill_o_Pro.Data.Migrations
                     b.Property<float>("Total")
                         .HasColumnType("real");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateOnly>("payDate")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Invoices");
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Invoice");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.InvoiceItem", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("InvoiceId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ItemId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("InvoiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ItemId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("InvoiceId");
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("InvoiceItems");
+                    b.ToTable("InvoiceItem");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.Item", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -192,91 +306,75 @@ namespace Bill_o_Pro.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("Bill_o_Pro.Models.Mandatee", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mobile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TaxAuthority")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TaxId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Mandatees");
-                });
-
-            modelBuilder.Entity("Bill_o_Pro.Models.Order", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InvoiceId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Item");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("InvoiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("CustomerId");
+
                     b.HasIndex("InvoiceId");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.OrderItem", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("Cycle")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InvoiceId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("InvoiceId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ItemId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("ItemId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("OrderId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -284,10 +382,9 @@ namespace Bill_o_Pro.Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("cycle")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("InvoiceId");
 
@@ -295,13 +392,17 @@ namespace Bill_o_Pro.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -315,9 +416,15 @@ namespace Bill_o_Pro.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Permission")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -524,20 +631,66 @@ namespace Bill_o_Pro.Data.Migrations
 
             modelBuilder.Entity("Bill_o_Pro.Models.Address", b =>
                 {
-                    b.HasOne("Bill_o_Pro.Models.Mandatee", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("MandateeId");
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany("Address")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bill_o_Pro.Models.Customer", null)
+                        .WithMany("Address")
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.BankAccount", b =>
                 {
-                    b.HasOne("Bill_o_Pro.Models.Mandatee", null)
-                        .WithMany("BankAccounts")
-                        .HasForeignKey("MandateeId");
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany("BankAccount")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bill_o_Pro.Models.Customer", null)
+                        .WithMany("BankAccount")
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.Customer", b =>
+                {
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.Invoice", b =>
+                {
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("Bill_o_Pro.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.InvoiceItem", b =>
                 {
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
                     b.HasOne("Bill_o_Pro.Models.Invoice", "Invoice")
                         .WithMany("Bom")
                         .HasForeignKey("InvoiceId");
@@ -546,12 +699,14 @@ namespace Bill_o_Pro.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ItemId");
 
+                    b.Navigation("Client");
+
                     b.Navigation("Invoice");
 
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("Bill_o_Pro.Models.Order", b =>
+            modelBuilder.Entity("Bill_o_Pro.Models.Item", b =>
                 {
                     b.HasOne("Bill_o_Pro.Models.Client", "Client")
                         .WithMany()
@@ -559,34 +714,72 @@ namespace Bill_o_Pro.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Bill_o_Pro.Models.Invoice", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("InvoiceId");
+                    b.HasOne("Bill_o_Pro.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.Order", b =>
+                {
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("Bill_o_Pro.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("Bill_o_Pro.Models.Invoice", null)
+                        .WithMany("Order")
+                        .HasForeignKey("InvoiceId");
+
+                    b.HasOne("Bill_o_Pro.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.OrderItem", b =>
                 {
+                    b.HasOne("Bill_o_Pro.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
                     b.HasOne("Bill_o_Pro.Models.Invoice", "Invoice")
                         .WithMany()
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InvoiceId");
 
                     b.HasOne("Bill_o_Pro.Models.Item", "Item")
                         .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ItemId");
 
                     b.HasOne("Bill_o_Pro.Models.Order", null)
                         .WithMany("Bom")
                         .HasForeignKey("OrderId");
 
+                    b.Navigation("Client");
+
                     b.Navigation("Invoice");
 
                     b.Navigation("Item");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.User", b =>
+                {
+                    b.HasOne("Bill_o_Pro.Models.Client", null)
+                        .WithMany("User")
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -640,18 +833,27 @@ namespace Bill_o_Pro.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Bill_o_Pro.Models.Client", b =>
+                {
+                    b.Navigation("Address");
+
+                    b.Navigation("BankAccount");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Bill_o_Pro.Models.Customer", b =>
+                {
+                    b.Navigation("Address");
+
+                    b.Navigation("BankAccount");
+                });
+
             modelBuilder.Entity("Bill_o_Pro.Models.Invoice", b =>
                 {
                     b.Navigation("Bom");
 
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Bill_o_Pro.Models.Mandatee", b =>
-                {
-                    b.Navigation("Addresses");
-
-                    b.Navigation("BankAccounts");
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Bill_o_Pro.Models.Order", b =>
