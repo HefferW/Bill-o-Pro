@@ -1,0 +1,13 @@
+﻿@model Bill_o_Pro.Models.User
+@{
+    ViewData["Title"] = "Edit Users";
+}
+
+<h5>Benutzer verwalten</h5>
+
+In dieser Ansicht können Benutzer angelegt oder editiert werden.
+
+<form asp-controller="User" asp-action="CreateEditUser">
+
+    <button class="btn btn-primary" type="submit">Speichern</button>
+</form>

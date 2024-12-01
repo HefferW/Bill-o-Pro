@@ -1,0 +1,51 @@
+﻿@model Bill_o_Pro.Models.Client
+@{
+    ViewData["Title"] = "Client Details";
+}
+
+<form asp-controller="Client" asp-action="CreateEditClient" enctype="multipart/form-data">
+    <div class="card">
+
+        <div class="card-header">
+            <h4>Create or edit client</h4>
+        </div>
+
+        <div class="card-body">
+
+            <input hidden asp-for="Id" />
+            <input hidden asp-for="TaxId" />
+            <input hidden asp-for="TaxAuthority" />
+            <input hidden asp-for="BankAccount" />
+            <input hidden asp-for="Address" />
+            <input hidden asp-for="User" />
+            <div class="mb-3">
+                <input class="form-control" asp-for="Number" type="number" placeholder="Enter number for client" />
+            </div>
+            <div class="mb-3">
+                <input class="form-control" asp-for="CompanyName" type="text" placeholder="Enter company name for client" />
+            </div>
+            <div class="mb-3">
+                <input class="form-control" asp-for="Name" type="text" placeholder="Enter name for client" />
+            </div>
+
+            <div class="row g-2">
+                <div class="col-auto">
+                    <input class="form-control" asp-for="Phone" type="text" placeholder="phone" />
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" asp-for="Mobile" type="text" placeholder="mobile" />
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" asp-for="Email" type="text" placeholder="e-mail" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">save</button>
+        </div>
+
+    </div>
+
+</form>
