@@ -34,8 +34,9 @@ namespace Bill_o_Pro.Controllers
                 return RedirectToAction("Index");
             }
             // Create new client
-            if (client.Id.ToString() == "00000000-0000-0000-0000-000000000000") //{00000000-0000-0000-0000-000000000000}
-            {
+            //if (client.Id.ToString() == "00000000-0000-0000-0000-000000000000") //{00000000-0000-0000-0000-000000000000}
+            if (client.Id == Guid.Empty)
+                {
                 // TODO: Check for valid client number
                 client.Id = Guid.NewGuid();
                 _context.Client.Add(client);
