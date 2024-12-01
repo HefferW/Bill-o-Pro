@@ -1,4 +1,4 @@
-﻿using Bill_o_Pro.Data;
+using Bill_o_Pro.Data;
 using Bill_o_Pro.Models;
 using Microsoft.AspNetCore.Mvc;
 
