@@ -2,6 +2,8 @@
 
 == Documentation
 
+You can find detailed information about this project in our https://HefferW.github.io/Bill-o-Pro/[documentation].
+
 === Adoc
 
 For documentation, we opted for https://asciidoc.org[AsciiDoc] instead of Markdown.
