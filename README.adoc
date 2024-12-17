@@ -1,0 +1,16 @@
+= Bill-o-Pro
+
+== Documentation
+
+=== Adoc
+
+For documentation, we opted for https://asciidoc.org[AsciiDoc] instead of Markdown.
+AsciiDoc provides a richer syntax and better support for more complex documentation needs, such as including tables, cross-references, and callouts.
+Its built-in integration with PlantUML allows us to embed diagrams directly into our documentation, creating a unified and efficient workflow.
+
+=== PlantUML
+
+We chose https://plantuml.com/[PlantUML] for creating diagrams in our project because it allows us to focus on the content rather than manual layout adjustments.
+With its text-based syntax, diagrams like class diagrams, sequence diagrams, and flowcharts can be generated quickly and kept under version control.
+This approach makes collaboration easy, ensures consistency, and integrates seamlessly into our development workflow.
+By automating the visualization process, we save time and maintain clarity as the project evolves.

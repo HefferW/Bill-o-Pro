@@ -1,0 +1,108 @@
+@startuml
+
+class User {
+    - String name
+    - String password
+    - String email
+}
+
+class Mandatee {
+    - String companyName
+    - String name
+    - String taxId
+    - String taxAuthority
+    - String phone
+    - String mobile
+    - String email
+}
+
+class BankAccount {
+    - String iban
+    - String bic
+    - String institutionName
+    - String accountHolder
+    - Currency currency
+}
+
+class Client {
+    - String name
+    - String phone
+    - String mobile
+    - String email
+    - String taxId
+}
+
+class Address {
+    - String name
+    - String street
+    - String zip
+    - String city
+    - String state
+    - String country
+    - AddressType addressType
+}
+
+class Invoice {
+    - Date date
+    - Date deliveryDate
+    - Date payDate
+}
+
+class InvoiceItem {
+    - int quantity
+}
+
+class Item {
+    - String name
+    - String description
+    - Unit unit
+    - long price
+    - long tax
+}
+
+class OrderItem {
+    - int quantity
+    - Cycle cycle
+    - Date startDate
+    - Date endDate
+}
+
+class Order {}
+
+enum AddressType {
+    BILLING_ADDRESS
+    SHIPPING_ADDRESS
+    POST_OFFICE_BOX
+}
+
+enum Currency {
+    EUR
+    USD
+}
+
+enum Cycle {
+    HOURLY
+    DAILY
+    WEEKLY
+    MONTHLY
+    YEARLY
+}
+
+Item "1" -- "1" InvoiceItem : references <
+Item "1" -- "1" OrderItem : references <
+
+User "1" -- "*" Mandatee : has >
+
+Mandatee "1" -- "*" Address : has >
+Mandatee "1" -- "*" BankAccount : has >
+Mandatee "1" -- "*" Client : has >
+
+Client "1" -- "*" Address : has >
+Client "1" -- "*" BankAccount : has >
+Client "1" -- "*" Order : places >
+
+Invoice "1" -- "*" InvoiceItem : bill of material consists of >
+
+Order "1" -- "*" OrderItem : bill of material consists of >
+
+@enduml
