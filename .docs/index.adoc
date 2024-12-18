@@ -1,5 +1,6 @@
 = Project Documentation
 :toc: auto
+:imagesdir: diagrams
 
 Welcome to the project documentation.
 
@@ -10,4 +11,4 @@ This is the main page of the documentation.
 == Next Steps
 
 Follow this link to continue reading:
-link:another-page.html[Go to Another Page]
+link:domain.html[Domain]
