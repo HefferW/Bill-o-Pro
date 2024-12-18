@@ -30,8 +30,8 @@ jobs:
       - name: Generate HTML
         run: |
           mkdir -p output
-          asciidoctor -r asciidoctor-diagram -D output docs/index.adoc
-          asciidoctor -r asciidoctor-diagram -D output docs/domain.adoc
+          asciidoctor -r asciidoctor-diagram -D output .docs/index.adoc
+          asciidoctor -r asciidoctor-diagram -D output .docs/domain.adoc
 
       # 4. Upload artifacts for GitHub Pages
       - name: Upload generated HTML
