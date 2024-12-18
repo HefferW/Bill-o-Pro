@@ -24,7 +24,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ruby graphviz default-jre
-          gem install asciidoctor asciidoctor-diagram --user-install
+          gem install asciidoctor 
+          gem install asciidoctor-diagram --user-install
           echo 'export PATH="$PATH:$(ruby -e "print Gem.user_dir")/bin"' >> $GITHUB_ENV
 
       # 3. Generate HTML from AsciiDoc
