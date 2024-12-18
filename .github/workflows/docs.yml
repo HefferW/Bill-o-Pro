@@ -1,0 +1,44 @@
+name: Publish AsciiDoc to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Install Asciidoctor
+      - name: Install Asciidoctor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y asciidoctor
+
+      # 3. Generate HTML from AsciiDoc
+      - name: Generate HTML
+        run: |
+          mkdir -p output
+          asciidoctor -D output .docs/index.adoc
+          asciidoctor -D output .docs/domain.adoc
+
+      # 4. Upload artifacts for GitHub Pages
+      - name: Upload generated HTML
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./output
+
+      # 5. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
