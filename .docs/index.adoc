@@ -1,6 +1,5 @@
 = Project Documentation
 :toc: auto
-:imagesdir: diagrams
 
 Welcome to the project documentation.
 

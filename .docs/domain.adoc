@@ -1,6 +1,5 @@
 = Domain
-:imagesdir: diagrams
 
 == Domain Model
 
-plantuml::domain.puml[]
+plantuml::diagrams/domain.puml[]
