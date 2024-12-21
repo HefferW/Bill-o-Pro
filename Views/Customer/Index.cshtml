@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Customers";
+}
+
+<a class="btn btn-primary" asp-controller="Customer" asp-action="ShowCustomerDetails">Kunden anlegen / editieren</a>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">CompanyName</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            foreach (Customer customer in Model)
+            {
+                <tr>
+                    <td>@customer.Number</td>
+                    <td>@customer.CompanyName</td>
+                    <td>@customer.Name</td>
+                    <td>@customer.Email</td>
+                    <td>
+                        <a asp-route-id="@customer.Id" asp-controller="Customer" asp-action="ShowCustomerDetails" class="btn btn-warning">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,44 @@
+﻿@model Bill_o_Pro.Models.Item
+@{
+    ViewData["Title"] = "Item Details";
+}
+
+<form asp-controller="Item" asp-action="CreateEditItem" enctype="multipart/form-data">
+    <div class="card">
+
+        <div class="card-header">
+            <h4>Create or edit item</h4>
+        </div>
+
+        <div class="card-body">
+
+            <input hidden asp-for="Id" />
+            <input hidden asp-for="User" />
+            <div class="mb-3">
+                <input class="form-control" asp-for="Name" type="text" placeholder="Enter name for item" />
+            </div>
+            <div class="mb-3">
+                <input class="form-control" asp-for="Description" type="text" placeholder="Enter description for item" />
+            </div>
+            <div class="mb-3">
+                <input class="form-control" asp-for="Unit" type="text" placeholder="Enter unit for item" />
+            </div>
+
+            <div class="row g-2">
+                <div class="col-auto">
+                    <input class="form-control" asp-for="Price" type="number" placeholder="price" />
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" asp-for="Tax" type="number" placeholder="tax in %" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">save</button>
+        </div>
+
+    </div>
+
+</form>

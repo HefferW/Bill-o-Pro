@@ -1,6 +1,7 @@
-﻿using Bill_o_Pro.Models;
+using Bill_o_Pro.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Bill_o_Pro.Models;
 
 namespace Bill_o_Pro.Data
 {
